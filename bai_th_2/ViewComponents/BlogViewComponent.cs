@@ -14,6 +14,8 @@ namespace bai_th_2.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var items = _context.TbBlogs.Where(m => (bool)m.IsActive).ToList();
+            ViewBag.blogComment = _context.TbBlogComments.Where(m => m.IsActive).ToList();
+
             return await Task.FromResult<IViewComponentResult>(View(items));
         }
 
