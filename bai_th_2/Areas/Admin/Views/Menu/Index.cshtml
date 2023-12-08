@@ -1,0 +1,84 @@
+﻿@using bai_th_2.Models;
+@model IEnumerable<TbMenu>;
+@{
+    ViewData["Title"] = "Menu Page";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Menu</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Menu</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Thêm Nemu</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Title</th>
+                                    <th>Levels</th>
+                                    <th >ParentId</th>                                   
+                                    <th >Position</th>
+                                    <th>Active</th>
+                                    <th>Option</th>
+                                      
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in Model){
+                                <tr>
+                                    <td>@item.MenuId</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Levels</td>
+                                    <td>@item.ParentId</td>
+                                    <td>@item.Position</td>
+                                    <td>@item.IsActive</td>
+                                    <td>
+                                       <a asp-area="Admin" asp-controller="Menu" asp-action="Edit" aps-route-itemid="@item.MenuId" class="btn btn-primary btn-sm" title="update Menu" ><i class="fas fa-pencil-alt"></i></a>
+                                       <a asp-area="Admin" asp-controller="Menu" asp-action="Delete" aps-route-itemid="@item.MenuId" class="btn btn-primary btn-sm" title="Delete Menu" ><i class="fas fa-trash"></i></a>
+                                    </td>
+                                   
+                                </tr> 
+                                }
+                               
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">«</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+       
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

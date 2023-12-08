@@ -15,6 +15,8 @@ public partial class HarmicContext : DbContext
     {
     }
 
+    public virtual DbSet<AdminMenu> AdminMenus { get; set; }
+
     public virtual DbSet<TbAccount> TbAccounts { get; set; }
 
     public virtual DbSet<TbAdv> TbAdvs { get; set; }
@@ -59,6 +61,19 @@ public partial class HarmicContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AdminMenu>(entity =>
+        {
+            entity.ToTable("AdminMenu");
+
+            entity.Property(e => e.AdminMenuId).HasColumnName("AdminMenuID");
+            entity.Property(e => e.ActionName).HasMaxLength(50);
+            entity.Property(e => e.AreaName).HasMaxLength(50);
+            entity.Property(e => e.ControlerName).HasMaxLength(50);
+            entity.Property(e => e.Icon).HasMaxLength(50);
+            entity.Property(e => e.IdName).HasMaxLength(50);
+            entity.Property(e => e.ItemNemu).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<TbAccount>(entity =>
         {
             entity.HasKey(e => e.AccountId);

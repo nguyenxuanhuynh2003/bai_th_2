@@ -1,0 +1,36 @@
+﻿@model IEnumerable<bai_th_2.Models.AdminMenu>
+
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+    @foreach (var item in Model.Where(i => i.ItemLevel == 1))
+    {
+        var menuId = item.AdminMenuId;
+        var menuChild = Model.Where(i => i.ParenLevel == menuId);
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                    @item.ItemNemu
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            @if (menuChild.Count() > 0)
+            {
+                @foreach (var @value in menuChild)
+                {
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="pages/layout/top-nav.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@value.ItemNemu</p>
+                            </a>
+                        </li>
+                    </ul>
+                }
+
+            }
+
+        </li>
+    }
+</ul>
